@@ -12,7 +12,7 @@ func main() {
 }
 
 func serveIP(w http.ResponseWriter, r *http.Request) {
-    // ip := strings.Split(r.RemoteAddr, ":")
-
-    fmt.Fprintf(w, string(r.Header.Get("HTTP_X_FORWARDED_FOR")))
+    //ip := strings.Split(r.RemoteAddr, ":")
+    fmt.Println(r.Header)
+    fmt.Fprintf(w, "hey")
 }
