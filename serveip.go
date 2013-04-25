@@ -4,6 +4,7 @@ import (
   "fmt"
   "net/http"
   "os"
+  "strings"
 )
 
 func main() {
@@ -12,6 +13,12 @@ func main() {
 }
 
 func serveIP(w http.ResponseWriter, r *http.Request) {
-    fmt.Println(r.Header)
-    fmt.Fprintf(w, r.Header.Get("X-Forwarded-For"))
+  if len(r.Header.Get("X-Forwarded-For")) > 0 {
+    ips := strings.Split(r.Header.Get("X-Forwarded-For"), ", ")
+    fmt.Println(ips[(len(ips) - 1)])
+  } else {
+    ips := strings.Split(r.RemoteAddr, ":")
+    fmt.Fprintf(w, ips[0])
+  }
+
 }
