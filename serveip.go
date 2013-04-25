@@ -12,5 +12,6 @@ func main() {
 }
 
 func serveIP(w http.ResponseWriter, r *http.Request) {
+    fmt.Println(r.Header)
     fmt.Fprintf(w, r.Header.Get("X-Forwarded-For"))
 }
