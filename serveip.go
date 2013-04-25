@@ -15,7 +15,7 @@ func main() {
 func serveIP(w http.ResponseWriter, r *http.Request) {
   if len(r.Header.Get("X-Forwarded-For")) > 0 {
     ips := strings.Split(r.Header.Get("X-Forwarded-For"), ", ")
-    fmt.Println(ips[(len(ips) - 1)])
+    fmt.Fprintf(ips[(len(ips) - 1)])
   } else {
     ips := strings.Split(r.RemoteAddr, ":")
     fmt.Fprintf(w, ips[0])
